@@ -2,7 +2,7 @@
 
 Name:           python-pygments
 Version:        1.1.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A syntax highlighting engine written in Python
 
 Group:          Development/Libraries
@@ -10,6 +10,12 @@ License:        BSD
 URL:            http://pygments.org/
 Source0:        http://cheeseshop.python.org/packages/source/P/Pygments/Pygments-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+# Patch for fixing a traceback when trying to guess
+# a lexer starting with a dot.
+# Fixed upstream:
+# https://bitbucket.org/birkenfeld/pygments-main/issues/618/typeerror-when-guessing-the-lexer-of-a
+Patch0: lexer-dot-guess-fix.patch
 
 BuildArch:      noarch
 BuildRequires:  python-devel, python-setuptools
@@ -25,6 +31,7 @@ markup.
 
 %prep
 %setup -q -n Pygments-%{version}
+%patch0 -p1
 
 
 %build
@@ -53,6 +60,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Oct 03 2016 Charalampos Stratakis <cstratak@redhat.com> - 1.1.1-2
+- Fix traceback when trying to guess a lexer starting with a dot
+Resolves: rhbz#690176
+
 * Tue Sep 29 2009 Steve 'Ashcrow' Milner <me@stevemilner.org> - 1.1.1-1
 - Updated for release.
 
