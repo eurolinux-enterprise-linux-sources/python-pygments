@@ -22,7 +22,7 @@
 
 Name:           python-pygments
 Version:        1.4
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        Syntax highlighting engine written in Python
 
 Group:          Development/Libraries
@@ -206,6 +206,9 @@ popd
 
 
 %changelog
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.4-9
+- Mass rebuild 2013-12-27
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.4-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
