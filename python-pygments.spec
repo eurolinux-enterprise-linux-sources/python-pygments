@@ -22,7 +22,7 @@
 
 Name:           python-pygments
 Version:        1.4
-Release:        10%{?dist}
+Release:        8%{?dist}
 Summary:        Syntax highlighting engine written in Python
 
 Group:          Development/Libraries
@@ -30,12 +30,6 @@ License:        BSD
 URL:            http://pygments.org/
 Source0:        http://pypi.python.org/packages/source/P/%{upstream_name}/%{upstream_name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
-# Patch for fixing a traceback when trying to guess
-# a lexer starting with a dot.
-# Fixed upstream:
-# https://bitbucket.org/birkenfeld/pygments-main/issues/618/typeerror-when-guessing-the-lexer-of-a
-Patch0: lexer-dot-guess-fix.patch
 
 BuildArch:      noarch
 BuildRequires:  python2-devel >= 2.4, python-setuptools, python-nose
@@ -105,7 +99,6 @@ need to prettify source code. Highlights are:
 
 %prep
 %setup -q -n Pygments-%{version}
-%patch0 -p1
 
 %if 0%{?with_python3}
 rm -rf %{py3dir}
@@ -213,13 +206,6 @@ popd
 
 
 %changelog
-* Wed Feb 01 2017 Charalampos Stratakis <cstratak@redhat.com> - 1.4-10
-- Fix traceback when trying to guess a lexer starting with a dot
-Resolves: rhbz#1413594
-
-* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.4-9
-- Mass rebuild 2013-12-27
-
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.4-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
