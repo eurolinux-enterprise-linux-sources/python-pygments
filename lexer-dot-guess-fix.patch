@@ -1,0 +1,13 @@
+diff --git a/pygments/util.py b/pygments/util.py
+index 46c5a12..4710924 100644
+--- a/pygments/util.py
++++ b/pygments/util.py
+@@ -118,7 +118,7 @@ def make_analysator(f):
+             return 0.0
+         try:
+             return min(1.0, max(0.0, float(rv)))
+-        except ValueError:
++        except (ValueError, TypeError):
+             return 0.0
+     text_analyse.__doc__ = f.__doc__
+     return staticmethod(text_analyse)
